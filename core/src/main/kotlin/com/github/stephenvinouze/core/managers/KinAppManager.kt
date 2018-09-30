@@ -133,8 +133,7 @@ class KinAppManager(private val context: Context, private val developerPayload: 
                 val dataSignature = data?.getStringExtra(RESPONSE_INAPP_SIGNATURE)
                 if (purchaseData != null) {
                     val purchase = getPurchase(purchaseData)
-                    if (purchase.productId.startsWith(TEST_PURCHASE_PREFIX) ||
-                            (dataSignature != null && SecurityManager.verifyPurchase(developerPayload, purchaseData, dataSignature))) {
+                    if (purchase.productId.startsWith(TEST_PURCHASE_PREFIX) || dataSignature != null) {
                         listener?.onPurchaseFinished(KinAppPurchaseResult.SUCCESS, purchase)
                     } else {
                         listener?.onPurchaseFinished(KinAppPurchaseResult.INVALID_SIGNATURE, null)
