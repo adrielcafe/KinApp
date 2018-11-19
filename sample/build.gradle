@@ -4,7 +4,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Integer.parseInt(ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
     defaultConfig {
         applicationId "com.github.stephenvinouze.kinapp"
         minSdkVersion 14
@@ -37,6 +36,7 @@ dependencies {
 
     compile project(':core')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1"
     compile "com.android.support:appcompat-v7:$appcompat_version"
     compile "com.android.support:recyclerview-v7:$appcompat_version"
 

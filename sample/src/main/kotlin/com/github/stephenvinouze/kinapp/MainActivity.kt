@@ -12,8 +12,9 @@ import com.github.stephenvinouze.core.models.KinAppProduct
 import com.github.stephenvinouze.core.models.KinAppProductType
 import com.github.stephenvinouze.core.models.KinAppPurchase
 import com.github.stephenvinouze.core.models.KinAppPurchaseResult
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), KinAppManager.KinAppListener, View.OnClickListener {
 
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity(), KinAppManager.KinAppListener, View.OnC
         if (billingManager.isBillingSupported(KinAppProductType.INAPP)) {
             when (view) {
                 fetchProductsButton -> {
-                    launch(UI) {
+                    GlobalScope.launch(Dispatchers.Main) {
                         products = billingManager.fetchProducts(arrayListOf(KinAppManager.TEST_PURCHASE_SUCCESS), KinAppProductType.INAPP).await()?.toMutableList()
 
                         Toast.makeText(this@MainActivity, "Fetched " + products?.size + " products", Toast.LENGTH_LONG).show()
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity(), KinAppManager.KinAppListener, View.OnC
                     }
                 }
                 consumePurchasesButton -> {
-                    launch(UI) {
+                    GlobalScope.launch(Dispatchers.Main) {
                         purchases?.forEach {
                             billingManager.consumePurchase(it).await()
                         }

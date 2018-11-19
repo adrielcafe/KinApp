@@ -5,7 +5,6 @@ group = 'com.github.stephenvinouze'
 
 android {
     compileSdkVersion Integer.parseInt(ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion Integer.parseInt(ANDROID_MIN_SDK_VERSION)
